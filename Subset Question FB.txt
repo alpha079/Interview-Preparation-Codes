@@ -1,0 +1,65 @@
+// Input:
+
+// Given an array A of
+// -positive
+// -sorted
+// -no duplicate
+// -integer
+
+// A positive integer k
+
+
+// Output:
+
+// Count of all such subsets of A,
+// Such that for any such subset S,
+// Min(S) + Max(S) = k
+// subset should contain atleast two elements
+
+// input: {1,2,3,4,5}
+
+// subsets: 
+// 1, 2, 3, 4, 5, {1,2},{1,3}
+// k = 5
+
+// count = 5
+
+// {1, 4},{2,3} {1,2,4}, {1,2,3,4} {1,3,4}
+
+// */
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int count_subset(int ar[], int n, int k)
+{
+    int low=0;
+    int high=n-1;
+    int iterator=0;
+   int cnt=0;
+    while(low<=high)
+    { int value=ar[low]+ar[high];
+        if(value==k)
+        {
+            cnt+=pow(2,(high-low)-1);
+            low++;high--;
+        }
+        else if(value>k)
+        {
+            high--;
+        }
+        else{
+            low++;
+        }
+    }
+    return cnt;
+}
+
+
+int main()
+{
+   int ar[]={1,2,3,4,5};
+   cout<<count_subset(ar,5,5);
+
+    return 0;
+}

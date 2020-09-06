@@ -1,0 +1,37 @@
+/*
+For n greater then 1. The (n-1)'s state must be in one of the following states.
+
+It contains 2 different colours. For example:-[R,G,R]
+It contains 3 different colours. For example:-[G,R,Y]
+There is no other ways other then the listed.
+Consider first case:-
+For [R,G,R] in (n-1) state. Possible ways to paint nth layer are [G,R,G],[Y,R,Y],[G,Y,G], [Y,R,G],[G,R,Y]. If we notice three of them has 2 different colours(First Three in the list) and two of them has 3 Different colours.
+From this we can conclude that for every state in previous layer which contains 2 different colours there would be 5 possible ways to paint current level. In which 3 of them contains 2 different colours and 2 of them contains 3 different colours.
+
+Consider second case:-
+For [G,R,Y] in (n-1) state. Possible ways to paint nth layer are [R,G,R],[R,Y,R], [R,Y,G],[Y,G,R]. If we notice 2 of them has 2 different colours and 2 of them has 3 different colours.
+From this we can conclude that for every state in previous layer which contains 3 different colours there would be 4 possible ways to paint current level. In which 2 of them contains two different colours and 2 of them contains three different colours.
+
+In expression,
+Let [x,y] be the number of 2 different paints and 3 different paints in level n-1 respectively
+then number of ways to paint nth layer are [3x+2y, 2x+2y].
+*/
+
+class Solution {
+public:
+    int numOfWays(int n) {
+        const long long int tota=1e9+7;
+        
+        long long a(6),b(6);
+        
+        for(long i=2;i<=n;i++)
+        {
+            auto c=3*a+2*b;
+            auto d=2*a+2*b;
+            a=c%tota;
+            b=d%tota;
+        }
+        return (a+b)%tota;
+        
+    }
+};

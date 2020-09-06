@@ -1,0 +1,30 @@
+#include<bits/stdc++.h>
+using namespace std;
+int dp[100][100]={-1};
+int min(int a, int b)
+{
+    return a<b?a:b;
+}
+int print_min_subset_difference(int ar[], int n, int sum1, int sum2)
+{
+    if(n==0)
+    {
+        return abs(sum1-sum2);
+
+    }
+    int sum1_include=print_min_subset_difference(ar,n-1,sum1+ar[n-1],sum2);
+    
+    int sum2_include=print_min_subset_difference(ar,n-1,sum1,sum2+ar[n-1]);
+
+   return min(sum1_include,sum2_include);
+
+}
+
+int main()
+{   int ar[]={3, 1, 4, 2, 2, 1};
+    int n=sizeof(ar)/sizeof(int);
+
+    cout<<print_min_subset_difference(ar,n,0,0);
+
+    return 0;
+}

@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int climbStairs(int n) {
+       //similar to fibbonacci series
+        
+        if(n==1)return 1;
+        int value2=2; //dp[1]
+        int value1=1;  //dp[2]
+        
+        //start from n==3
+        for(int i=3;i<=n;i++)
+        {
+            int temp=value2;
+                value2=value1+value2;
+            value1=temp;
+        }
+        return value2;
+        
+    }
+};

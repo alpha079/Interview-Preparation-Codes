@@ -1,0 +1,31 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int count_ways(int n)
+{
+    int dp[n+1];
+
+    dp[0]=0;
+    for(int i=1;i<=n;i++)
+    {
+        int value=i;
+      int cnt=INT_MAX;
+        while(value!=0)
+        {
+            int temp=value%10;
+            value/=10;
+            if(temp==0)continue;
+             cnt=min(cnt,1+dp[i-temp]);
+        }
+        dp[i]=cnt;
+    }
+    return dp[n];
+}
+
+int main()
+{
+    int n;
+    cin>>n;
+    cout<<count_ways(n);
+    return 0;
+}

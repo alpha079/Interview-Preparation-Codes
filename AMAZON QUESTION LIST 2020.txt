@@ -1,0 +1,12 @@
+LINK 1:  https://aonecode.com/amazon-online-assessment-questions#favorite-genres
+
+LEETCODE LINK FOR QUEESTIONS
+
+https://leetcode.com/discuss/interview-question/344650/Amazon-Online-Assessment-Questions
+
+problems:-
+1: MST | Minimize Cost of Connecting Servers
+2: Maximum Units https://leetcode.com/discuss/interview-question/793606/Amazon-OA-Question/
+3: Disk Space analysis  https://leetcode.com/discuss/interview-question/808348/
+4: Zombie in a matrix 
+5: 
