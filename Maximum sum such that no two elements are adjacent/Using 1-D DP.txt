@@ -1,0 +1,19 @@
+int maxSubsetSum(vector<int> arr) {
+    
+int n=arr.size();
+int dp[n];
+dp[0]=max(0,arr[0]);
+for(int i=1;i<n;i++)
+{
+    int value=arr[i]+dp[i-2];
+    dp[i]=max(value,max(arr[i],dp[i-1]));
+}
+return max(dp[n-1],dp[n-2]);
+
+
+}
+//take example of -3,-5,7
+ans is 7;
+
+dp[]={-3,-3,5}
+max(ar[i],max(ar[i]+dp[i-2],d[i-1]))

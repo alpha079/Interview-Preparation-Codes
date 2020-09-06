@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+// Function to calculate total number of ways to achieve given
+// sum with n throws of dice having k faces
+int count(int n, int k, int sum, string s="")
+{
+    if(n==0 and sum==0)
+    {
+          cout<<s<<endl;
+           return 1;
+    }
+	// if desired sum is reached with n dices
+	if (n == 0)
+		return (sum == 0);
+
+	// desired sum can't be reached with current configuration
+	if (sum < 0 || k * n < sum || n > sum)
+		return 0;
+
+	int res = 0;
+
+	// recur for all possible solutions
+	for (int i = 1; i <= k; i++)
+		res += count(n - 1, k, sum - i, s+to_string(i)+ " |");
+
+	return res;
+}
+
+int main(void)
+{
+	int n = 2;	// n throws
+	int k = 6;	// values 1 - 6
+
+	int sum = 4;	// desired sum
+
+	printf("Total number of ways are %d", count(n, k, sum));
+
+	return 0;
+}

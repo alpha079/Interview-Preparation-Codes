@@ -1,0 +1,62 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+bool isValid(string s, int i, int j)
+{
+  vector<bool> vis(26);
+
+  for(int k=i;k<=j;k++)
+  {
+      if(vis[s[k]-'a']==true)
+         return false;
+     vis[s[k]-'a']=true;
+    
+  }
+  return true;
+}
+int count(string s)
+{
+    int n=s.size();
+  int res=0;
+  int len=0;
+  int first=0,last=0;
+  int high=0,low=0;
+  int ar[26];
+    for(low=0,high=0;high<n;high++)
+    {
+        if(ar[s[high]-'a']==1)
+        {  //make low to high , means go upto char which matches with high, and then low++ to start the distinct substring.
+            while(s[low]!=s[high])
+            {
+               ar[s[high]-'a']=0;
+               low++;
+            }
+            low++;
+        }
+        else{
+            ar[s[high]-'a']=1;
+            if(high-low>last-first)
+              {
+                  first=low;
+                  last=high;
+              }
+        }
+    }
+    
+             //ar[s[i]-'a']==1;
+        
+    
+    string r=s.substr(first,last-first+1);
+    cout<<r<<endl;
+    cout<<first<<" "<<last<<endl;
+    return res;
+    
+}
+
+int main()
+{
+
+    string s="aabacadfgrdtyu";
+    cout<<count(s);
+    return 0;
+}

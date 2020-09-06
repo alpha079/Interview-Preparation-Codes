@@ -1,0 +1,76 @@
+ Split array into subarray with given conditions
+
+All the characters in each of the splitted subarray must not be in another subarray
+Sample Input - "aabacadfgrdtyu"
+Sample Output - {"aabaca", "dfgrd", "tyu"}
+
+//
+
+#include<bits/stdc++.h>
+using namespace std;
+
+
+
+vector<string> count(string s)
+{
+    int size=s.size();
+
+  int high=size-1,low=0;
+ 
+  unordered_map<char, int> m;
+  for(int i=0;i<size;i++)
+  {
+      m[s[i]]++;
+  }
+ vector<pair<char, int>> v;
+  for(auto x: m)
+  {
+      if(x.second>1)
+      {
+         v.push_back({x.first,x.second});
+      }
+      else continue;
+  }
+  vector<string> res;
+  for(auto x: v){
+      int value=x.second;
+      char z=x.first;
+      string str;
+    while(low<=high){
+        if(value>0){
+            if(s[low]==z){
+              value--;
+            }
+             str+=s[low];
+        low++;
+        }
+        else {res.push_back(str);break;}
+       
+
+        
+    }
+    
+  }
+  if(low!=high){
+  string rem=s.substr(low,high+1);
+  
+  res.push_back(rem);
+  }
+    
+    return res;
+    
+}
+
+int main()
+{
+
+    string s="aabacadfgrdtyu";
+    vector<string> res;
+
+    res=count(s);
+   for(auto x: res)
+   {
+       cout<<x<<" ";
+   }
+    return 0;
+}

@@ -1,0 +1,36 @@
+//Count of ubset sum with given sum 
+
+//input:- {2,3,5,6,8,10}
+//output:- 3
+ //{2,3,5}, {2,8}, {10}
+
+#include<bits/stdc++.h>
+using namespace std;
+  int dp[100][100]={-1};
+
+
+int find_subset(int ar[], int n, int sum)
+{   
+    if(n<0)return 0;
+    if(sum==0)return 1;
+    if(sum!=0 and n==0) return 0;
+    int cnt=0;
+   if(dp[n][sum]!=false)
+   {
+       return dp[n][sum];
+   }
+    if(ar[n-1]>sum)
+      return  cnt+= find_subset(ar,n-1,sum);
+    return  cnt+=find_subset(ar,n-1,sum) + find_subset(ar,n-1,sum-ar[n-1]);
+
+    
+}
+
+int main()
+{
+   int ar[]={2,3,5,6,8,10};
+   int n=sizeof(ar)/sizeof(int);
+   cout<< find_subset(ar,n,10);;
+
+    return 0;
+}

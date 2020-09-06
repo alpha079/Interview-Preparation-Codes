@@ -1,0 +1,23 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int count(int ar[], int i, int n)
+{
+    if(i>=n)return 0;
+  int cnt=0;
+     cnt=max(count(ar,i+1,n),ar[i]+count(ar,i+2,n));
+    return cnt;
+}
+
+int main()
+{  
+   int n;
+   cin>>n;
+   int ar[n];
+   for(int i=0;i<n;i++)
+   {
+       cin>>ar[i];
+   }
+   cout<<count(ar,0,n);
+    return 0;
+}

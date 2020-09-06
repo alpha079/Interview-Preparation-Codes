@@ -1,0 +1,52 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+bool isValid(string s, int i, int j)
+{
+  vector<bool> vis(26);
+
+  for(int k=i;k<=j;k++)
+  {
+      if(vis[s[k]-'a']==true)
+         return false;
+     vis[s[k]-'a']=true;
+    
+  }
+  return true;
+}
+int count(string s)
+{
+    int n=s.size();
+  int res=0;
+  int len=0;
+  int first=0,last=0;
+    for(int i=0;i<n;i++)
+    {
+        vector<bool> vis(256);
+        for(int j=i;j<n;j++)
+        {
+           if(vis[s[j]]==1)
+             break;
+        else {
+            res=max(res,j-i+1);
+            vis[s[j]]=1;
+           
+             }
+               
+            }
+             //ar[s[i]-'a']==1;
+        }
+    
+   // string r=s.substr(first,last-first+1);
+    //cout<<first<<" "<<last<<endl;
+    return res;
+    
+}
+
+int main()
+{
+
+    string s="aabacadfgrdtyu";
+    cout<<count(s);
+    return 0;
+}
