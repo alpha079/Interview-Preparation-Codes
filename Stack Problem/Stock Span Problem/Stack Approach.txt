@@ -1,0 +1,43 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<int> calculateSpan(int ar[], int n)
+{
+    if(n==0)
+      return {};
+    stack<pair<int,int>> s;
+   vector<int> res(n,1);
+ 
+   
+   
+    
+    for(int i=0;i<n;i++)
+    {
+        while(!s.empty() and ar[s.top().first]<=ar[i])
+        {
+              s.pop();
+        }
+        res[i]=s.empty()?i+1:i-s.top().first;
+        s.push({i,ar[i]});
+    }
+    return res;
+}
+int main()
+{
+  
+    int price[] = { 10, 4, 5, 90, 120, 80 };  
+    int n = sizeof(price) / sizeof(price[0]);  
+    
+    
+    auto res=calculateSpan(price, n);  
+    for(auto x: res)
+     {
+         cout<<x<<" ";
+     }
+
+  
+    
+   
+  
+    return 0;  
+}  

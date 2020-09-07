@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int count_area_under_histogram(int ar[], int n)
+{
+    
+   int minheight=INT_MAX;
+   int maxarea=0;
+    for(int i=0;i<n-2;i++)
+    {
+       minheight=ar[i];
+       maxarea=max(maxarea,minheight*1);
+       for(int j=i+1;j<n;j++)
+       {
+           minheight=min(minheight,ar[j]);
+           maxarea=max(maxarea,minheight*(j-i+1));
+       }
+    }
+    return maxarea;
+}
+
+int main()
+{
+     int ar[]={2,1,5,6,2,3};
+     int n=sizeof(ar)/sizeof(int);
+     cout<<count_area_under_histogram(ar,n);
+    return 0;
+}

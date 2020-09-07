@@ -1,0 +1,52 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int count_area_under_histogram(int ar[], int n)
+{
+    int max_area=0;
+    int area=0;
+  stack<int> s;
+  int i=0;
+  while(i<n)
+  {
+      if(s.empty() || ar[s.top()]<=ar[i])
+           s.push(i++);
+     else{
+         int idx=s.top();
+         s.pop();
+
+         if(s.empty())
+           {
+               area=ar[idx]*i;
+           }
+           else{
+               area=ar[idx]*(i-s.top()-1);
+           }
+           max_area=max(max_area,area);
+     }
+  }
+  //for case : when the array is strictly increasin i.e input is liks 1,2,3,4,5,6
+  while(!s.empty())
+  { 
+       int idx=s.top();
+         s.pop();
+         if(s.empty())
+           {
+               area=ar[idx]*i;
+           }
+           else{
+               area=ar[idx]*(i-s.top()-1);
+           }
+           max_area=max(max_area,area);
+
+  }
+  return max_area;
+}
+
+int main()
+{  //input1: {2,1,5,6,2,3}
+     int ar[]={1,2,3,4,5};
+     int n=sizeof(ar)/sizeof(int);
+     cout<<count_area_under_histogram(ar,n);
+    return 0;
+}
