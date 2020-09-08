@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+using namespace std;
+int dp[100];
+int count_ways(int n)
+{ 
+   if(n==1) return dp[n]=0;
+     
+    if(dp[n]!=0)return dp[n];
+   dp[n]=count_ways(n-1)+1;
+
+   if(n%3==0)
+     dp[n]=min(dp[n],count_ways(n/3)+1);
+    
+   if(n%2==0)
+     dp[n]=min(dp[n],count_ways(n/2)+1);
+
+    return dp[n];
+    
+}
+
+int main()
+{
+    int n;
+    cin>>n;
+    memset(dp,0,sizeof(dp));
+    cout<<count_ways(n);
+    return 0;
+}
