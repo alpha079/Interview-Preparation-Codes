@@ -1,0 +1,55 @@
+#include<bits/stdc++.h>
+using namespace std;
+void count_smallest_number(string str, int k, string &res)
+{
+    if(k==0)
+     { res.append(str);return;}
+
+    int len=str.length();
+    if(len<=k)return;
+
+    int idx=0;
+    for(int i=1;i<=k;i++)
+    {
+        if(str[i]<str[idx])
+          {
+              idx=i;
+          }
+    }
+    res+=str[idx];
+count_smallest_number(str.substr(idx+1,len-idx),k-idx,res);
+
+}
+
+string remove_k_digit(string str,int k)
+
+{
+    if(k==0)return str;
+
+    if(str.length()==k)
+      return "";
+
+    string res="";
+    count_smallest_number(str,k, res);
+    return res;
+
+}
+
+int main()
+{
+    //string str="1432219";
+    string str1="10200";
+    //string str2="10";
+    int k1=3;int k2=1;int k3=2;
+    //int n;cin>>n;
+  //  cout<<remove_k_digit(str,k1)<<endl;
+    string res=remove_k_digit(str1,k2);
+   // cout<<remove_k_digit(str2,k3)<<endl;
+   while(res[0]=='0')
+   {
+       res.erase(res.begin());
+   }
+   cout<<res;
+
+    return 0;
+}
